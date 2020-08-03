@@ -11,10 +11,26 @@ function PriceChart(props) {
   const [candleSeries, setCandleSeries] = useState();
   const [lineSeries, setLineSeries] = useState();
   const [movingAverage, setMovingAverage] = useState()
-  const [clientWidth, setClientWidth] = useState(100);
+  const [clientWidth, setClientWidth] = useState(window.innerHeight);
   const [trend, setTrend] = useState()
   const [position, setPosition] = useState()
   const [price, setPrice] = useState(0)
+  const [size, setSize] = useState(window.innerWidth)
+
+  useEffect(() => {
+  
+    resizeObserver.current = new ResizeObserver(e => {
+      const { width, height } = e[0].contentRect;
+      chart.current.applyOptions({ width, height });
+      setTimeout(() => {
+        chart.current.timeScale().fitContent();
+      }, 0);
+      resizeObserver.current.observe(chartContainerRef.current);
+    });
+    
+    return () => resizeObserver.current.disconnect();
+  });
+
   useEffect(() => {
     chart.current = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
@@ -78,13 +94,14 @@ function PriceChart(props) {
       lineType: 2,
       })
     )
-    setClientWidth(chartContainerRef.current.clientWidth);
+    setClientWidth(window.innerWidth);
+    console.log(chart.current)
     return () => {
-      chart.current.remove(candleSeries);
-      chart.current.remove(lineSeries);
-    };
+      chart.current.remove()  
+    }
+    
 
-  }, []);
+  }, [props.time, chartContainerRef]);
 
   useInterval(() => {
     const getData = async () => {
@@ -163,17 +180,7 @@ function PriceChart(props) {
       });
   }, 1000);
 
-  useEffect(() => {
-    resizeObserver.current = new ResizeObserver(e => {
-      const { width, height } = e[0].contentRect;
-      chart.current.applyOptions({ width, height });
-      setTimeout(() => {
-        chart.current.timeScale().fitContent();
-      }, 0);
-      resizeObserver.current.observe(chartContainerRef.current);
-    });
-    return () => resizeObserver.current.disconnect();
-  });
+
 
   return (
     <React.Fragment>
