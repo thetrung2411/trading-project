@@ -11,11 +11,11 @@ function PriceChart(props) {
   const [candleSeries, setCandleSeries] = useState();
   const [lineSeries, setLineSeries] = useState();
   const [movingAverage, setMovingAverage] = useState()
-  const [clientWidth, setClientWidth] = useState(window.innerHeight);
+  // const [clientWidth, setClientWidth] = useState(window.innerHeight);
   const [trend, setTrend] = useState()
   const [position, setPosition] = useState()
   const [price, setPrice] = useState(0)
-  const [size, setSize] = useState(window.innerWidth)
+  // const [size, setSize] = useState(window.innerWidth)
 
   useEffect(() => {
   
@@ -94,7 +94,7 @@ function PriceChart(props) {
       lineType: 2,
       })
     )
-    setClientWidth(window.innerWidth);
+    // setClientWidth(window.innerWidth);
     console.log(chart.current)
     return () => {
       chart.current.remove()  
