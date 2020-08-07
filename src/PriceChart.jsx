@@ -187,10 +187,10 @@ function PriceChart(props) {
   return (
     <React.Fragment>
       <div className="priceChart" ref={chartContainerRef}></div>
-      {/* <div>
+      <div>
          {props.symbol} is {trend} on {props.time} time frame with highest price {count}
-      </div> */}
-      {/* <div> Tips: {props.symbol} is now {trend}. You can place {position} order at {price} </div> */}
+      </div>
+      <div> Tips: {props.symbol} is now {trend}. You can place {position} order at {price} </div>
     </React.Fragment>
   );
 }
