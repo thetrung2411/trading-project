@@ -1,8 +1,6 @@
-#priceChart{
-    width: 70%;
-    height: 70%;
-    display: flex;
-    flex-direction: column;
+.priceChart{
+    width: 100%;
+    /* height: 100%;  */
     justify-content: center;
     align-content: center;
     background: #353535;
@@ -10,11 +8,12 @@
     border-width: 1px;
     border-color: black;
     border-style: solid;
-    position: relative
+    /* display: flex; */
+    /* flex-direction: column; */
+    align-items: stretch
+
 }
 
-.tv-lightweight-charts{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
+/* .tv-lightweight-charts{
+  width: 100%
+} */

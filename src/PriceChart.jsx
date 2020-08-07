@@ -18,20 +18,7 @@ function PriceChart(props) {
   // const [size, setSize] = useState(window.innerWidth)
 
   useEffect(() => {
-  
-    resizeObserver.current = new ResizeObserver(e => {
-      const { width, height } = e[0].contentRect;
-      chart.current.applyOptions({ width, height });
-      setTimeout(() => {
-        chart.current.timeScale().fitContent();
-      }, 0);
-      resizeObserver.current.observe(chartContainerRef.current);
-    });
-    
-    return () => resizeObserver.current.disconnect();
-  });
-
-  useEffect(() => {
+    console.log(chartContainerRef.current.clientHeight)
     chart.current = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
@@ -95,13 +82,13 @@ function PriceChart(props) {
       })
     )
     // setClientWidth(window.innerWidth);
-    console.log(chart.current)
+    // console.log(chart.current)
+    // console.log(chartContainerRef.current.clientWidth)
+    console.log(chartContainerRef.current.clientHeight)
     return () => {
       chart.current.remove()  
     }
-    
-
-  }, [props.time, chartContainerRef]);
+  }, []);
 
   useInterval(() => {
     const getData = async () => {
@@ -180,15 +167,30 @@ function PriceChart(props) {
       });
   }, 1000);
 
+  useEffect(() => {
+    resizeObserver.current = new ResizeObserver(e => {
+      console.log(e)
+      const { width, height } = e[0].contentRect;
+      chart.current.applyOptions({ width, height });
+      setTimeout(() => {
+        chart.current.timeScale().fitContent();
+      }, 0);
+    });
+    resizeObserver.current.observe(chartContainerRef.current);
+    // console.log(resizeObserver.current.observe(chartContainerRef.current))
+    console.log(chartContainerRef.current)
+    console.log(resizeObserver.current)
+    return () => resizeObserver.current.disconnect();
+  }, []);
 
 
   return (
     <React.Fragment>
-      <div>
+      <div className="priceChart" ref={chartContainerRef}></div>
+      {/* <div>
          {props.symbol} is {trend} on {props.time} time frame with highest price {count}
-      </div>
-      <div id="priceChart" className="price" ref={chartContainerRef}></div>
-      <div> Tips: {props.symbol} is now {trend}. You can place {position} order at {price} </div>
+      </div> */}
+      {/* <div> Tips: {props.symbol} is now {trend}. You can place {position} order at {price} </div> */}
     </React.Fragment>
   );
 }

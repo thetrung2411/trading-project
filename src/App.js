@@ -31,17 +31,39 @@ function App() {
 
 
   return <div className="App">
+   {/* this will be header */}
+   <div className="header">
     <NavBar>
       <NavItem icon ={<AddIcon/>}></NavItem>
       <NavItem icon ={<AddIcon/>}></NavItem>
       <NavItem icon ={<AddIcon/>}></NavItem>
       <NavItem icon ={<ArrowDropDownIcon/>}><DropdownMenu></DropdownMenu></NavItem>
     </NavBar>
+    </div>
     {/* <div ref={chartRef} className = 'chart'></div> */}
     {/* <section class="basic-grid"> */}
     {/* <PriceChart data={info}></PriceChart> */}
+    {/* // this will be main */}
+    <div className = 'main'>
     <PriceChart symbol={symbol} time={time}></PriceChart>
+    </div>
+    <div className ='side'>
+      <div className='sideChild'></div>
+      <div className='sideChild'></div>
+      <div className='sideChild'></div>
+      <div className='sideChild'></div>
+      <div className='sideChild'></div>
+      <div className='sideChild'></div>
+      <div className='sideChild'></div>
+      <div className='sideChild'></div>
+      <div className='sideChild'></div>
+      <div className='sideChild'></div>
+      <div className='sideChild'></div>
+      <div className='sideChild'></div>
+    </div>
     {/* </section> */}
+    {/* //the side should be at this point */}
+    <div className = 'footer'>
     <select onChange={setData} className="select">
       <option value = "BTCUSDT">BTC/USDT</option>
       <option value = "ETHUSDT">ETH/USDT</option>
@@ -61,6 +83,7 @@ function App() {
       <option value = "4h">4H</option>
     </select>
   </div>;
+  </div>
 }
 
 export default App;
