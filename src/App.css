@@ -53,16 +53,143 @@ body,
 }
 .side{
   display: flex;
+  /* position: relative;   */
   flex-direction: column;
   grid-area: sidebar;
   overflow: auto;
   background-color: black;
-  justify-content: space-evenly;
-  align-items: center
+  align-items: center;
 }
 .sideChild{
-  margin: 10px; 
+  margin: 1px; 
   width: 100%;
   height: 60px;
-  background-color: yellow
+  background-color: yellow;
+  display: flex;
 }
+.sideChildDown{
+  display: flex;
+  width: 100%;
+  max-height: 500px;
+  background-color: gray;
+  flex-wrap: wrap
+}
+.sideChildDown:hover{
+  overflow-y: scroll
+}
+.sideChildTop{
+  margin-bottom: 3px; 
+  width: 100%;
+  height: 80px;
+  background-color: red;
+}
+.searchBar{
+  background-color: purple;
+  height: 35px;
+  width: 70px;
+}
+.searchBar:hover{
+  flex-grow: 1;
+  transition: 500ms
+}
+.sideChildTopUp{
+  width: 100%;
+  height: 45px;
+  background-color: blue;
+  display: flex; 
+  justify-content: center; 
+  align-items: center
+}
+.sideChildTopDown{
+  display: flex;
+  width: 100%;
+  background-color: green;
+  height: 35px;
+}
+.columnLabel:nth-child(-n+2){
+  display: flex;
+  flex: 1.3;
+  background-color: brown;
+  height: 35px;
+  width: 100%;  
+  margin-left: 2px;
+  margin-right: 2px; 
+  justify-content: center;
+  align-items: center;
+}
+.columnLabel:nth-child(n+3){
+  display: flex;
+  flex: 1;
+  background-color: brown;
+  height: 35px;
+  width: 100%;  
+  margin-left: 2px;
+  margin-right: 2px; 
+  justify-content: center;
+  align-items: center;
+}
+
+.coinName{
+  flex: 1.3;
+  display: flex;
+  margin-left: 2px;
+  margin-right: 2px; 
+  justify-content: center;
+  align-items: center;
+  background-color: greenyellow
+}
+.currPrice{
+  flex: 1.3;
+  display: flex;
+  margin-left: 2px;
+  margin-right: 2px; 
+  justify-content: center;
+  align-items: center;
+  background-color: greenyellow
+}
+.currChg{
+  display: flex;
+  flex: 1;
+  background-color: greenyellow;
+  /* height: 35px; */
+  width: 100%;  
+  margin-left: 2px;
+  margin-right: 2px; 
+  justify-content: center;
+  align-items: center;
+}
+
+.currChg[data-type='-']{
+  display: flex;
+  flex: 1;
+  background-color: red;
+  /* height: 35px; */
+  width: 100%;  
+  margin-left: 2px;
+  margin-right: 2px; 
+  justify-content: center;
+  align-items: center;
+}
+
+.currChgPercent[data-type='-']{
+  display: flex;
+  flex: 1;
+  background-color: red;
+  width: 100%;  
+  margin-left: 2px;
+  margin-right: 2px; 
+  justify-content: center;
+  align-items: center;
+}
+.currChgPercent{
+  display: flex;
+  flex: 1;
+  background-color:greenyellow;
+  /* height: 35px; */
+  width: 100%;  
+  margin-left: 2px;
+  margin-right: 2px; 
+  justify-content: center;
+  align-items: center;
+}
+

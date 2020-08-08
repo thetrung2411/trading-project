@@ -4,10 +4,14 @@ import PriceChart from "./PriceChart"
 import {NavBar, NavItem, DropdownMenu} from "./NavBar"
 import AddIcon from '@material-ui/icons/Add';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import { useInterval } from "./helper";
 function App() { 
   // const chartRef = useRef()
   // const chart = createChart(document.getElementById('root'), { width: 750, height: 500 });
   // const momentumChart = createChart(document.getElementById('root'), { width: 750, height: 500 })
+  const [currChg, setCurrChg] = useState(0)
+  const [currChgP, setCurrChgP] = useState("")
+  const [price, setPrice] = useState(0)
   const [symbol, setSymbol] = useState('BTCUSDT')
   const [time, setTime] = useState('1m') 
   function setData(e){
@@ -18,7 +22,31 @@ function App() {
   e.preventDefault()
   setTime(e.target.value)
 }
+useInterval(() =>{
+  const getChange = async() => {
+    let response = await fetch ('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT')
+    let data = await response.json();
+    return data
+  }
+  const getAll = async() => {
+    let response = await fetch ('https://api.binance.com/api/v3/ticker/24hr')
+    let data = await response.json();
+    var map = new Map()
+    for(let i of data){
+        map.set(i.symbol, i)
+    }
+    return map
+  }
+  getAll().then(data => console.log(data))
+  // setPrice(getChange.lastPrice)
+  getChange().then(data => {
+    console.log(data.priceChangePercent.toString()[0])
+    setPrice(parseFloat(data.lastPrice))
+    setCurrChg(parseFloat(data.priceChange))
+    setCurrChgP(data.priceChangePercent.toString() + "%")
+  })
 
+}, 2000)
 // async function fetchIdea(){
 //   try{
 //     let response = await fetch(`http://localhost:5001/trading-project-8c8eb/us-central1/helloWorld`)
@@ -48,18 +76,92 @@ function App() {
     <PriceChart symbol={symbol} time={time}></PriceChart>
     </div>
     <div className ='side'>
-      <div className='sideChild'></div>
-      <div className='sideChild'></div>
-      <div className='sideChild'></div>
-      <div className='sideChild'></div>
-      <div className='sideChild'></div>
-      <div className='sideChild'></div>
-      <div className='sideChild'></div>
-      <div className='sideChild'></div>
-      <div className='sideChild'></div>
-      <div className='sideChild'></div>
-      <div className='sideChild'></div>
-      <div className='sideChild'></div>
+      <div className='sideChildTop'>
+        <div className='sideChildTopUp'>
+            <div className = 'searchBar'></div>
+          </div>
+        <div className='sideChildTopDown'>
+          <div className='columnLabel'>Sybmol</div>
+          <div className='columnLabel'>Last</div>
+          <div className='columnLabel'>Chage</div>
+          <div className='columnLabel'>Chage%</div>
+        </div>
+      </div>
+      <div className = 'sideChildDown'> 
+      <div className='sideChild'>
+        <div className='coinName'>BTCUSDT</div>
+        <div className='currPrice'>{price}</div>
+        <div className='currChg' data-type={`${currChg.toString()[0]}`}>{currChg}</div>
+        <div className='currChgPercent' data-type={`${currChgP.toString()[0]}`} >{currChgP}</div>
+      </div>
+      <div className='sideChild'>
+        <div className='coinName'>BTCUSDT</div>
+        <div className='currPrice'>{price}</div>
+        <div className='currChg' data-type={`${currChg.toString()[0]}`}>{currChg}</div>
+        <div className='currChgPercent' data-type={`${currChgP.toString()[0]}`} >{currChgP}</div>
+      </div>
+      <div className='sideChild'>
+        <div className='coinName'>BTCUSDT</div>
+        <div className='currPrice'>{price}</div>
+        <div className='currChg' data-type={`${currChg.toString()[0]}`}>{currChg}</div>
+        <div className='currChgPercent' data-type={`${currChgP.toString()[0]}`} >{currChgP}</div>
+      </div>
+      <div className='sideChild'>
+        <div className='coinName'>BTCUSDT</div>
+        <div className='currPrice'>{price}</div>
+        <div className='currChg' data-type={`${currChg.toString()[0]}`}>{currChg}</div>
+        <div className='currChgPercent' data-type={`${currChgP.toString()[0]}`} >{currChgP}</div>
+      </div>
+      <div className='sideChild'>
+        <div className='coinName'>BTCUSDT</div>
+        <div className='currPrice'>{price}</div>
+        <div className='currChg' data-type={`${currChg.toString()[0]}`}>{currChg}</div>
+        <div className='currChgPercent' data-type={`${currChgP.toString()[0]}`} >{currChgP}</div>
+      </div>
+      <div className='sideChild'>
+        <div className='coinName'>BTCUSDT</div>
+        <div className='currPrice'>{price}</div>
+        <div className='currChg' data-type={`${currChg.toString()[0]}`}>{currChg}</div>
+        <div className='currChgPercent' data-type={`${currChgP.toString()[0]}`} >{currChgP}</div>
+      </div>
+      <div className='sideChild'>
+        <div className='coinName'>BTCUSDT</div>
+        <div className='currPrice'>{price}</div>
+        <div className='currChg' data-type={`${currChg.toString()[0]}`}>{currChg}</div>
+        <div className='currChgPercent' data-type={`${currChgP.toString()[0]}`} >{currChgP}</div>
+      </div>
+      <div className='sideChild'>
+        <div className='coinName'>BTCUSDT</div>
+        <div className='currPrice'>{price}</div>
+        <div className='currChg' data-type={`${currChg.toString()[0]}`}>{currChg}</div>
+        <div className='currChgPercent' data-type={`${currChgP.toString()[0]}`} >{currChgP}</div>
+      </div>
+      <div className='sideChild'>
+        <div className='coinName'>BTCUSDT</div>
+        <div className='currPrice'>{price}</div>
+        <div className='currChg' data-type={`${currChg.toString()[0]}`}>{currChg}</div>
+        <div className='currChgPercent' data-type={`${currChgP.toString()[0]}`} >{currChgP}</div>
+      </div>
+      <div className='sideChild'>
+        <div className='coinName'>BTCUSDT</div>
+        <div className='currPrice'>{price}</div>
+        <div className='currChg' data-type={`${currChg.toString()[0]}`}>{currChg}</div>
+        <div className='currChgPercent' data-type={`${currChgP.toString()[0]}`} >{currChgP}</div>
+      </div>
+      <div className='sideChild'>
+        <div className='coinName'>BTCUSDT</div>
+        <div className='currPrice'>{price}</div>
+        <div className='currChg' data-type={`${currChg.toString()[0]}`}>{currChg}</div>
+        <div className='currChgPercent' data-type={`${currChgP.toString()[0]}`} >{currChgP}</div>
+      </div>
+      <div className='sideChild'>
+        <div className='coinName'>BTCUSDT</div>
+        <div className='currPrice'>{price}</div>
+        <div className='currChg' data-type={`${currChg.toString()[0]}`}>{currChg}</div>
+        <div className='currChgPercent' data-type={`${currChgP.toString()[0]}`} >{currChgP}</div>
+      </div>
+      </div>
+      
     </div>
     {/* </section> */}
     {/* //the side should be at this point */}

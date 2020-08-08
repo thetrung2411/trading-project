@@ -84,7 +84,7 @@ function PriceChart(props) {
     // setClientWidth(window.innerWidth);
     // console.log(chart.current)
     // console.log(chartContainerRef.current.clientWidth)
-    console.log(chartContainerRef.current.clientHeight)
+    // console.log(chartContainerRef.current.clientHeight)
     return () => {
       chart.current.remove()  
     }
@@ -169,7 +169,7 @@ function PriceChart(props) {
 
   useEffect(() => {
     resizeObserver.current = new ResizeObserver(e => {
-      console.log(e)
+      // console.log(e)
       const { width, height } = e[0].contentRect;
       chart.current.applyOptions({ width, height });
       setTimeout(() => {
@@ -178,19 +178,20 @@ function PriceChart(props) {
     });
     resizeObserver.current.observe(chartContainerRef.current);
     // console.log(resizeObserver.current.observe(chartContainerRef.current))
-    console.log(chartContainerRef.current)
-    console.log(resizeObserver.current)
+    // console.log(chartContainerRef.current)
+    // console.log(resizeObserver.current)
     return () => resizeObserver.current.disconnect();
   }, []);
 
 
   return (
     <React.Fragment>
-      <div className="priceChart" ref={chartContainerRef}></div>
+     
       <div>
          {props.symbol} is {trend} on {props.time} time frame with highest price {count}
       </div>
       <div> Tips: {props.symbol} is now {trend}. You can place {position} order at {price} </div>
+      <div className="priceChart" ref={chartContainerRef}></div>
     </React.Fragment>
   );
 }
