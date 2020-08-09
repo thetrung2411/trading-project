@@ -88,9 +88,9 @@ return <div></div>
    {/* this will be header */}
    <div className="header">
     <NavBar>
+      {/* <NavItem icon ={<AddIcon/>}></NavItem>
       <NavItem icon ={<AddIcon/>}></NavItem>
-      <NavItem icon ={<AddIcon/>}></NavItem>
-      <NavItem icon ={<AddIcon/>}></NavItem>
+      <NavItem icon ={<AddIcon/>}></NavItem> */}
       <NavItem icon ={<ArrowDropDownIcon/>}><DropdownMenu></DropdownMenu></NavItem>
     </NavBar>
     </div>
