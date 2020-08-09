@@ -30,8 +30,7 @@
   margin: 2px;
   text-align: center;
   /* align-content: center;/ */
-  border-right: solid;
-  border-radius: 1px;
+  
   line-height: 1.5;
 }
 .mainTopRight{
@@ -55,4 +54,17 @@
 .trend{
   font-weight: 900;
   color: greenyellow;
+}
+.buttonHolder{
+  flex: 0.5;
+  display: flex;
+  justify-content: space-evenly;
+ 
+}
+.select{
+  flex: 100%;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  background-color: aliceblue
 }

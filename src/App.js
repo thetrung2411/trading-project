@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import "./App.css";
 import PriceChart from "./PriceChart"
 import {NavBar, NavItem, DropdownMenu} from "./NavBar"
@@ -6,40 +6,47 @@ import AddIcon from '@material-ui/icons/Add';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { useInterval } from "./helper";
 function App() { 
-  const [symbol, setSymbol] = useState('BTCUSDT')
-  const [time, setTime] = useState('1m') 
   const [map, setMap] = useState()
+  const [change, setChange] = useState('')
+  const [searchGrow, setSearchGrow] = useState('false')
   const [arrayOfSymbol, setArrayOfSymbol] = useState(['BTCUSDT', 'ETHUSDT', 'ADAUSDT', 'BCHUSDT'])
-  function setData(e){
-    e.preventDefault()
-    setSymbol(e.target.value)
-}
-  function changeTime(e){
-  e.preventDefault()
-  setTime(e.target.value)
-}
   function add(e){
     e.preventDefault()
-    setArrayOfSymbol([...arrayOfSymbol, 'LINKUSDT'])
+    //should wait for the map render
+    console.log(map.get(change))
+    if(map.get(change) === undefined){
+    alert('Not found')
+    }
+    else{
+    setArrayOfSymbol([...arrayOfSymbol, change])
+    }
   }
-  function remove(e){
+
+  // function remove(e){
+  //   e.preventDefault()
+  //   arrayOfSymbol.pop()
+  //   setArrayOfSymbol(arrayOfSymbol)
+  // }
+  function typing(e){
     e.preventDefault()
-    arrayOfSymbol.pop()
-    setArrayOfSymbol(arrayOfSymbol)
+    var upperCase = e.target.value.toUpperCase()
+    setSearchGrow('true')
+    if(e.target.value === ''){
+      setSearchGrow('false')
+    }
+    setChange(upperCase)
   }
-  function search(e){
+  // function search(e){
     //TO DO: modify this to add more key to the table 
-    console.log(map.get(e.target.value))
-  }
-// useEffect(() => {
-  
+  //   console.log(map.get(e.target.value))
+  // }
+
+useEffect(() => {
+  console.log(change)
+  console.log(searchGrow)
+},[change, searchGrow])
 // },[arrayOfSymbol])
 useInterval(() =>{
-  // const getChange = async() => {
-  //   let response = await fetch ('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT')
-  //   let data = await response.json();
-  //   return data
-  // }
   const getAll = async() => {
     let response = await fetch ('https://api.binance.com/api/v3/ticker/24hr')
     let data = await response.json();
@@ -50,7 +57,7 @@ useInterval(() =>{
     return map
   }
   getAll().then(data => setMap(data))
-}, 5000)
+}, 1000)
 const sideChild = arrayOfSymbol.map((key) => {
   if(map){
   var obj = map.get(key)
@@ -92,14 +99,15 @@ return <div></div>
     {/* <PriceChart data={info}></PriceChart> */}
     {/* // this will be main */}
     <div className = 'main'>
-    <PriceChart symbol={symbol} time={time}></PriceChart>
+    <PriceChart></PriceChart>
     </div>
     <div className ='side'>
       <div className='sideChildTop'>
         <div className='sideChildTopUp'>
-            <div className = 'searchBar'>
-              <input className = 'input' placeholder='Search...'></input>
+            <div className = 'searchBar' data-type={`${searchGrow}`}>
+              <input className = 'input' placeholder='Search...' onChange={typing} ></input>
             </div>
+            <button className='addButton' onClick={add}> Add </button>
           </div>
         <div className='sideChildTopDown'>
           <div className='columnLabel'>Symbol</div>
@@ -115,27 +123,6 @@ return <div></div>
     {/* </section> */}
     {/* //the side should be at this point */}
     <div className = 'footer'>
-    <select onChange={setData} className="select">
-      <option value = "BTCUSDT">BTC/USDT</option>
-      <option value = "ETHUSDT">ETH/USDT</option>
-      <option value = "BCHUSDT">BCH/USDT</option>
-      <option value = "ADAUSDT">ADA/USDT</option>
-      <option value = "LINKUSDT">LINK/USDT</option>
-      <option value = "TRXUSDT">TRX/USDT</option>
-      <option value = "ZRXSDT">ZRX/USDT</option>
-      <option value = "LENDUSDT">LEND/USDT</option>
-
-    </select>
-    <select onChange={changeTime} className="select">
-      <option value = "1m">1M</option>
-      <option value = "5m">5M</option>
-      <option value = "15m">15M</option>
-      <option value = "1h">1H</option>
-      <option value = "4h">4H</option>
-    </select>
-    <button onClick={remove}> Remove </button>
-    <button onClick={add}> Add </button>
-    <button onClick={search} value="ETHUSDT"> Search </button>
   </div>;
   </div>
 }

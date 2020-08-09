@@ -11,14 +11,20 @@ function PriceChart(props) {
   const [candleSeries, setCandleSeries] = useState();
   const [lineSeries, setLineSeries] = useState();
   const [movingAverage, setMovingAverage] = useState()
-  // const [clientWidth, setClientWidth] = useState(window.innerHeight);
+  const [symbol, setSymbol] = useState('BTCUSDT')
+  const [time, setTime] = useState('1m') 
   const [trend, setTrend] = useState()
   const [position, setPosition] = useState()
   const [price, setPrice] = useState(0)
-  // const [size, setSize] = useState(window.innerWidth)
-
+  function setData(e){
+    e.preventDefault()
+    setSymbol(e.target.value)
+  }
+  function changeTime(e){
+    e.preventDefault()
+    setTime(e.target.value)
+  }
   useEffect(() => {
-    console.log(chartContainerRef.current.clientHeight)
     chart.current = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
@@ -93,7 +99,7 @@ function PriceChart(props) {
   useInterval(() => {
     const getData = async () => {
       let response = await fetch(
-        `https://api.binance.com/api/v3/klines?symbol=${props.symbol}&interval=${props.time}`
+        `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${time}`
       );
       let data = await response.json();
       return data;
@@ -184,10 +190,30 @@ function PriceChart(props) {
   return (
     <React.Fragment> 
       <div className = 'mainTop'>
-      <div className = 'mainTopLeft'>
-         Viewing <span className='symbol'>{props.symbol}</span> on <span className = 'symbol'>{props.time}</span> time frame <br></br> Highest price <span className="symbol">{count}</span>
+      <div className = 'buttonHolder'>
+      <select onChange={setData} className="select">
+      <option value = "BTCUSDT">BTC/USDT</option>
+      <option value = "ETHUSDT">ETH/USDT</option>
+      <option value = "BCHUSDT">BCH/USDT</option>
+      <option value = "ADAUSDT">ADA/USDT</option>
+      <option value = "LINKUSDT">LINK/USDT</option>
+      <option value = "TRXUSDT">TRX/USDT</option>
+      <option value = "ZRXSDT">ZRX/USDT</option>
+      <option value = "LENDUSDT">LEND/USDT</option>
+
+    </select>
+    <select onChange={changeTime} className="select">
+      <option value = "1m">1M</option>
+      <option value = "5m">5M</option>
+      <option value = "15m">15M</option>
+      <option value = "1h">1H</option>
+      <option value = "4h">4H</option>
+    </select>
       </div>
-      <div className = 'mainTopRight'> Tips: <span className='symbol'>{props.symbol}</span> is now <span className="trend" data-type={`${position}`}>{trend}</span>. <br></br>You can place <span className="trend" data-type={`${position}`}>{position}</span> order at <span className="symbol">{price}</span> </div>
+      <div className = 'mainTopLeft'>
+         Viewing <span className='symbol'>{symbol}</span> on <span className = 'symbol'>{time}</span> time frame <br></br> Highest price <span className="symbol">{count}</span>
+      </div>
+      <div className = 'mainTopRight'> Tips: <span className='symbol'>{symbol}</span> is now <span className="trend" data-type={`${position}`}>{trend}</span>. <br></br>You can place <span className="trend" data-type={`${position}`}>{position}</span> order at <span className="symbol">{price}</span> </div>
       </div>
       <div className="priceChart" ref={chartContainerRef}></div>
     </React.Fragment>

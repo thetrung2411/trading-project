@@ -57,7 +57,7 @@ export function DropdownMenu(){
             <CSSTransition in={activeMenu === 'settings'} unmountOnExit timeout={500} classNames = "menu-secondary" onEnter={calcHeight}>
             <div className="menu">
             <DropdownMenuItem leftIcon={<ArrowBackRoundedIcon/>} goToMenu="main">Back</DropdownMenuItem>
-            <a href="#c" onClick={() => window.open('https://blissful-ardinghelli-b94d01.netlify.app/login')}>
+            <a href="#c" onClick={() => window.open('https://blissful-ardinghelli-b94d01.netlify.app')}>
             <DropdownMenuItem >Wise Tech Global Application</DropdownMenuItem>
             </a>
             <a href="#c" onClick={() => window.open('https://blue-dit.herokuapp.com/default')}>
