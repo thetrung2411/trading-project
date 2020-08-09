@@ -6,10 +6,6 @@ import AddIcon from '@material-ui/icons/Add';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { useInterval } from "./helper";
 function App() { 
-  // const chartRef = useRef()
-  // const chart = createChart(document.getElementById('root'), { width: 750, height: 500 });
-  // const momentumChart = createChart(document.getElementById('root'), { width: 750, height: 500 })
-
   const [symbol, setSymbol] = useState('BTCUSDT')
   const [time, setTime] = useState('1m') 
   const [map, setMap] = useState()
@@ -54,7 +50,7 @@ useInterval(() =>{
     return map
   }
   getAll().then(data => setMap(data))
-}, 1000)
+}, 5000)
 const sideChild = arrayOfSymbol.map((key) => {
   if(map){
   var obj = map.get(key)
@@ -101,13 +97,15 @@ return <div></div>
     <div className ='side'>
       <div className='sideChildTop'>
         <div className='sideChildTopUp'>
-            <div className = 'searchBar'></div>
+            <div className = 'searchBar'>
+              <input className = 'input' placeholder='Search...'></input>
+            </div>
           </div>
         <div className='sideChildTopDown'>
-          <div className='columnLabel'>Sybmol</div>
-          <div className='columnLabel'>Last</div>
+          <div className='columnLabel'>Symbol</div>
+          <div className='columnLabel'>Last Price</div>
           <div className='columnLabel'>Chage</div>
-          <div className='columnLabel'>Chage%</div>
+          <div className='columnLabel'>Chg  %</div>
         </div>
       </div>
       <div className = 'sideChildDown'> 

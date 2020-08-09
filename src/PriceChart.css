@@ -1,6 +1,5 @@
 .priceChart{
     width: 100%;
-    /* height: 100%;  */
     justify-content: center;
     align-content: center;
     background: #353535;
@@ -8,12 +7,52 @@
     border-width: 1px;
     border-color: black;
     border-style: solid;
-    /* display: flex; */
-    /* flex-direction: column; */
     align-items: stretch
 
 }
 
 .tv-lightweight-charts{
   z-index: 99;
+}
+
+.mainTop{
+  display: flex;
+  width: 100%;
+  background-color: #353535;
+  color: #d1d4dc;
+  justify-content: space-around;
+  /* padding: 2px 2px 2px 2px; */
+  /* text-align: center; */
+  font-size: 12pt
+}
+.mainTopLeft{ 
+  flex: 1;
+  margin: 2px;
+  text-align: center;
+  /* align-content: center;/ */
+  border-right: solid;
+  border-radius: 1px;
+  line-height: 1.5;
+}
+.mainTopRight{
+  flex: 1;
+  margin: 2px;
+  line-height: 1.5;
+  /* padding-left: 5px; */
+  text-align: left
+}
+.symbol{ 
+  font-weight: 900;
+  font-size: 14pt;
+  color: rgb(255, 255, 255)
+}
+
+.trend[data-type='Sell']{
+  font-weight: 900;
+  color: red;
+}
+
+.trend{
+  font-weight: 900;
+  color: greenyellow;
 }

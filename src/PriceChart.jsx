@@ -177,20 +177,18 @@ function PriceChart(props) {
       }, 0);
     });
     resizeObserver.current.observe(chartContainerRef.current);
-    // console.log(resizeObserver.current.observe(chartContainerRef.current))
-    // console.log(chartContainerRef.current)
-    // console.log(resizeObserver.current)
     return () => resizeObserver.current.disconnect();
   }, []);
 
 
   return (
-    <React.Fragment>
-     
-      <div>
-         {props.symbol} is {trend} on {props.time} time frame with highest price {count}
+    <React.Fragment> 
+      <div className = 'mainTop'>
+      <div className = 'mainTopLeft'>
+         Viewing <span className='symbol'>{props.symbol}</span> on <span className = 'symbol'>{props.time}</span> time frame <br></br> Highest price <span className="symbol">{count}</span>
       </div>
-      <div> Tips: {props.symbol} is now {trend}. You can place {position} order at {price} </div>
+      <div className = 'mainTopRight'> Tips: <span className='symbol'>{props.symbol}</span> is now <span className="trend" data-type={`${position}`}>{trend}</span>. <br></br>You can place <span className="trend" data-type={`${position}`}>{position}</span> order at <span className="symbol">{price}</span> </div>
+      </div>
       <div className="priceChart" ref={chartContainerRef}></div>
     </React.Fragment>
   );
