@@ -11,19 +11,22 @@ function PriceChart(props) {
   const [candleSeries, setCandleSeries] = useState();
   const [lineSeries, setLineSeries] = useState();
   const [movingAverage, setMovingAverage] = useState()
-  const [symbol, setSymbol] = useState('BTCUSDT')
+  const [symbol, setSymbol] = useState(props.crypto)
   const [time, setTime] = useState('1m') 
   const [trend, setTrend] = useState()
   const [position, setPosition] = useState()
   const [price, setPrice] = useState(0)
-  function setData(e){
-    e.preventDefault()
-    setSymbol(e.target.value)
-  }
+  // function setData(e){
+  //   e.preventDefault()
+  //   setSymbol(e.target.value)
+  // }
   function changeTime(e){
     e.preventDefault()
     setTime(e.target.value)
   }
+  useEffect(() => {
+    setSymbol(props.crypto)
+  }, [props.crypto])
   useEffect(() => {
     chart.current = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
@@ -191,17 +194,11 @@ function PriceChart(props) {
     <React.Fragment> 
       <div className = 'mainTop'>
       <div className = 'buttonHolder'>
-      <select onChange={setData} className="select">
-      <option value = "BTCUSDT">BTC/USDT</option>
-      <option value = "ETHUSDT">ETH/USDT</option>
-      <option value = "BCHUSDT">BCH/USDT</option>
-      <option value = "ADAUSDT">ADA/USDT</option>
-      <option value = "LINKUSDT">LINK/USDT</option>
-      <option value = "TRXUSDT">TRX/USDT</option>
-      <option value = "ZRXSDT">ZRX/USDT</option>
-      <option value = "LENDUSDT">LEND/USDT</option>
-
-    </select>
+      <div className = 'name'>{symbol}</div>
+      
+      
+    
+    {/* </select> */}
     <select onChange={changeTime} className="select">
       <option value = "1m">1M</option>
       <option value = "5m">5M</option>

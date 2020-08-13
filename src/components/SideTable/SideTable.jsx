@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import './SideTable.css';
 import { useInterval } from "../../helper/helper";
-function SideTable(){
+function SideTable(props){
     const [map, setMap] = useState()
     const [searchGrow, setSearchGrow] = useState('false')
     const [searchResult, setSearchResult] = useState([])
@@ -18,7 +18,11 @@ function SideTable(){
           setSearchResult([...map.keys()].filter(e => e.includes(upperCase)))
         }
       }
-
+    function changeChart(e){
+      console.log(e.target.innerHTML)
+      // console.log(props.setCrypto)
+      props.setCrypto(e.target.innerHTML)
+    }
     function addList(e){
         e.preventDefault()
         setSearchGrow(false)
@@ -45,16 +49,16 @@ function SideTable(){
           return map
         }
         getAll().then(data => setMap(data))
+        console.log(map)
       }, 10000)
 
     const sideChild = map ? arrayOfSymbol.map((key) => {
-        
         var obj = map.get(key)
         var currChg = parseFloat(obj.priceChange)
         var currChgP = obj.priceChangePercent.toString() + "%"
         return (
         <div className='sideChild'>
-        <div className='coinName'>{key}</div>
+        <div className='coinName' onClick={changeChart}>{key}</div>
         <div className='currPrice'>{parseFloat(obj.lastPrice)}</div>
         <div className='currChg' data-type={`${currChg.toString()[0]}`}>{currChg}</div>
         <div className='currChgPercent' data-type={`${currChgP.toString()[0]}`} >{currChgP}</div>

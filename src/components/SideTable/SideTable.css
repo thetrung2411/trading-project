@@ -16,6 +16,9 @@
     border-width: 1px;
     border-color: #3b3f4e
   }
+  .sideChild:hover{
+    cursor: pointer;
+  }
   .sideChildDown{
     display: flex;
     width: 100%;

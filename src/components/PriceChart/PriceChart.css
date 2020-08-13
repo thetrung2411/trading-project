@@ -61,11 +61,33 @@
   justify-content: space-evenly;
  
 }
-.select{
-  cursor: pointer;
+.name{
   flex: 100%;
   outline: none;
   border: none;
   border-radius: 2px;
-  background-color: aliceblue
+  background-color: #253248;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin: 0px 0px 2px 1px;
+}
+
+.select{
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  background-color: aliceblue;
+  height: 100%;
+  border-bottom: solid;
+  border-width: 1px;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  color: black;
+  margin: 0 px 1px 2px 1px;
+  flex: 1;
 }
