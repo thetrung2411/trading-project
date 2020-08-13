@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { createChart, CrosshairMode } from "lightweight-charts";
 import "./PriceChart.css";
-import { useInterval, findLocalMaxMin } from "./helper";
+import { useInterval, findLocalMaxMin } from "../../helper/helper";
 function PriceChart(props) {
   const chartContainerRef = useRef();
   const resizeObserver = useRef();

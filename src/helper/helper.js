@@ -1,5 +1,4 @@
 import {useEffect, useRef} from 'react'
-
 export function useInterval(callback, delay){
     const savedCallback = useRef()
     useEffect(() => {
@@ -41,8 +40,4 @@ export function findLocalMaxMin(res){
         }
         // console.log(filter2)
         return filter
-}
-
-export function movingAverage(){
-
 }

@@ -62,6 +62,7 @@
  
 }
 .select{
+  cursor: pointer;
   flex: 100%;
   outline: none;
   border: none;
