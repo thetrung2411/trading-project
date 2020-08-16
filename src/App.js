@@ -33,8 +33,9 @@ function App() {
   
   useEffect(() => {
     slideShow();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   return (
     <div className="App">
       {/* this will be header */}
