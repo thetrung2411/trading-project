@@ -23,7 +23,7 @@ function SideTable(props){
       // console.log(props.setCrypto)
       props.setCrypto(e.target.innerHTML)
       props.setStream((e.target.innerHTML).toLowerCase())
-      props.socket.emit('client-send' , (e.target.innerHTML).toLowerCase())
+      // props.socket.emit('client-send' , (e.target.innerHTML).toLowerCase())
     }
     function addList(e){
         e.preventDefault()
