@@ -1,0 +1,60 @@
+.tutorial{
+    position: absolute;
+    place-items: center;
+    display: grid;
+    z-index: 5;
+    width: 50%;
+    height: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    grid-template-areas: "top"
+                         "middle"
+                         "bottom";
+    display: flex;
+    flex-direction: column;
+    border: solid;
+    border-color: aliceblue;
+  }
+  .tutorial button{
+    position: relative;
+  }
+  .tutorial h1,h3,p{
+    color: white;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .cc{
+    font-weight: 700;
+    color: greenyellow
+  }
+  .yl{
+    font-weight: 700;
+    color: #eefa41  
+  }
+  .pl{
+    font-weight: 700;
+    color: #f48fb1
+  }
+  .tutorialMiddle{
+    grid-area: middle;
+    width: 100%;
+    max-height: 500px;
+    flex: 2.5;
+    background-color: #353535;
+  }
+  
+  .tutorialBottom{
+    grid-area: bottom;
+    width: 100%;
+    flex: 0.5;
+    background-color: #353535;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 7px;
+  }
+  .tutorialBottom button{
+    height: 100%;
+    width: 80px;
+    margin: 3px;
+  }

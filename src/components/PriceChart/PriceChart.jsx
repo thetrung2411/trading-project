@@ -97,6 +97,8 @@ function PriceChart(props) {
     return () => {
       chart.current.remove()  
     }
+  // should call once and then update instead of useInterval
+  
   }, []);
 
   useInterval(() => {
@@ -174,7 +176,7 @@ function PriceChart(props) {
         setCount(Math.max(...val))
         lineSeries.setData(maxMin)
       });
-  }, 1000);
+  }, 2000);
 
   useEffect(() => {
     resizeObserver.current = new ResizeObserver(e => {
